@@ -1,18 +1,9 @@
 import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatelessWidget {
-  Future getdatdaFromfirebase() async {
-    var firestore = Firestore.instance;
-    QuerySnapshot qn =
-        await firestore.collection("ImageCategories").getDocuments();
-
-    return qn.documents;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,19 +11,24 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text(
-          "This is Firestore Cloude",
+          "PageTransitionType",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Hero(
             tag: "name",
-            child: Container(
-              height: 200,
-              color: Colors.green,
+            child: Column(
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  color: Colors.green,
+                ),
+              ],
             ),
           ),
           RaisedButton(
@@ -182,6 +178,10 @@ class SecoundPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
+      appBar: AppBar(
+        title: Text("PageTransitionType"),
+        backgroundColor: Colors.black,
+      ),
       body: Center(
         child: Hero(
           tag: "name",
